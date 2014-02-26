@@ -59,7 +59,7 @@ table {
 body {
     font: 16px / 1.4em 'PT Sans', sans-serif;;
     color: #1c1c1c;
-    background: url("starfield.jpg");
+    background: url("images/starfield.jpg");
 } 
 
 @font-face {
