@@ -68,42 +68,42 @@ def destroy():
 
 # motor control
 @webiopi.macro
-def moveForward()
+def moveForward():
     GPIO.digitalWrite(LEFTMOTORPOS, GPO.HIGH)
     GPIO.digitalWrite(LEFTMOTORNEG, GPO.LOW)
     GPIO.digitalWrite(RIGHTMOTORPOS, GPO.HIGH)
     GPIO.digitalWrite(RIGHTMOTORNEG, GPO.LOW)
   
 @webiopi.macro
-def moveBackward()
+def moveBackward():
     GPIO.digitalWrite(LEFTMOTORPOS, GPO.LOW)
     GPIO.digitalWrite(LEFTMOTORNEG, GPO.HIGH)
     GPIO.digitalWrite(RIGHTMOTORPOS, GPO.LOW)
     GPIO.digitalWrite(RIGHTMOTORNEG, GPO.HIGH)
 
 @webiopi.macro
-def turnLeft()
+def turnLeft():
     GPIO.digitalWrite(LEFTMOTORPOS, GPO.HIGH)
     GPIO.digitalWrite(LEFTMOTORNEG, GPO.LOW)
     GPIO.digitalWrite(RIGHTMOTORPOS, GPO.LOW)
     GPIO.digitalWrite(RIGHTMOTORNEG, GPO.HIGH)
 
 @webiopi.macro
-def turnRight()
+def turnRight():
     GPIO.digitalWrite(LEFTMOTORPOS, GPO.LOW)
     GPIO.digitalWrite(LEFTMOTORNEG, GPO.HIGH)
     GPIO.digitalWrite(RIGHTMOTORPOS, GPO.HIGH)
     GPIO.digitalWrite(RIGHTMOTORNEG, GPO.LOW)
 
 @webiopi.macro
-def motorStop()
+def motorStop():
     GPIO.digitalWrite(LEFTMOTORPOS, GPO.HIGH)
     GPIO.digitalWrite(LEFTMOTORNEG, GPO.HIGH)
     GPIO.digitalWrite(RIGHTMOTORPOS, GPO.HIGH)
     GPIO.digitalWrite(RIGHTMOTORNEG, GPO.HIGH)
 
 @webiopi.macro
-def motorShutdown()
+def motorShutdown():
     GPIO.digitalWrite(LEFTMOTORPOS, GPO.LOW)
     GPIO.digitalWrite(LEFTMOTORNEG, GPO.LOW)
     GPIO.digitalWrite(RIGHTMOTORPOS, GPO.LOW)
