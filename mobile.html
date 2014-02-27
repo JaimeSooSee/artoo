@@ -12,8 +12,6 @@
     <script src="/jquery-mobile.js"></script>
     <script src="/jquery.js"></script>
     <script type="text/javascript" src="/webiopi.js"></script>
-    <script type="text/javascript" src="motor.js"></script>
-    <script type="text/javascript" src="artoo.js"></script>
 
     <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="images/artoo_icon.png">
@@ -21,7 +19,7 @@
 
 	<script>
 
-	        webiopi().ready(function() {
+	    webiopi().ready(function() {
 			webiopi().refreshGPIO(false);
 		});
 
@@ -45,45 +43,45 @@
 		}
 
 		function moveForward()
-	        {
+	  {
 			var statusdiv = document.getElementById('statusdiv');
 			statusdiv.innerHTML = 'Move Forward';
-			r2d2().moveForward();
-	        }
+			webiopi().callMacro(moveForward, []);
+	  }
 
-	        function moveBackward()
+	  function moveBackward()
 		{
 			var statusdiv = document.getElementById('statusdiv');
 			statusdiv.innerHTML = 'Move Backward';
-			r2d2().moveBackward();
+			webiopi().callMacro(moveBackward, []);
 		}        
 
-	        function turnLeft()
-	        {
+	  function turnLeft()
+	  {
 			var statusdiv = document.getElementById('statusdiv');
 			statusdiv.innerHTML = 'Turn Left';
-			r2d2().turnLeft();
-	        }
+			webiopi().callMacro(turnLeft, []);
+	  }
 	        
-	        function turnRight()
-	        {
+	  function turnRight()
+	  {
 			var statusdiv = document.getElementById('statusdiv');
 			statusdiv.innerHTML = 'Turn Right';
-			r2d2().turnRight();
-	        }        
+			webiopi().callMacro(turnRight, []);
+	  }        
 	        
-	        function stop()
-	        {
+	  function stop()
+	  {
 			var statusdiv = document.getElementById('statusdiv');
-	          	statusdiv.innerHTML = 'Stop';
-			r2d2().stop();
+	   	statusdiv.innerHTML = 'Stop';
+			webiopi().callMacro(motorStop, []);
 		}
 
-	        function shutdown()
-	        {
+	  function shutdown()
+	  {
 			var statusdiv = document.getElementById('statusdiv');
-	          	statusdiv.innerHTML = 'Status: Powered Down';
-			r2d2().shutdown();
+	   	statusdiv.innerHTML = 'Status: Powered Down';
+			webiopi().callMacro(shutdown, []);
 			$("#nav").hide();
 		}
 

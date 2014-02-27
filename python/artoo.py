@@ -6,46 +6,109 @@ from threading import Thread
 
 GPIO = webiopi.GPIO
 
-LIGHT = 17 # GPIO pin using BCM numbering
+#LIGHT = 17 # GPIO pin using BCM numbering
 
-HOUR_ON = 8   # Turn Light ON at 08:00
-HOUR_OFF = 18 # Turn Light OFF at 18:00
+# Pins for the motors
+LEFTMOTORPOS = 2 # GPIO pin for left leg positive
+LEFTMOTORNEG = 3 # GPIO pin for left leg negative
+RIGHTMOTORPOS = 4 # GPIO pin for left leg positive
+RIGHTMOTORNEG = 17 # GPIO pin for left leg negative
+
+
+#HOUR_ON = 8   # Turn Light ON at 08:00
+#HOUR_OFF = 18 # Turn Light OFF at 18:00
 
 MEDIA_PATH = "/usr/share/webiopi/htdocs/artoo/sounds"
 
 # setup function is automatically called at WebIOPi startup
 def setup():
     # set the GPIO used by the light to output
-    GPIO.setFunction(LIGHT, GPIO.OUT)
+    #GPIO.setFunction(LIGHT, GPIO.OUT)
+
+    # set the GPIO used by the motors to output
+    GPIO.setFunction(LEFTMOTORPOS, GPIO.OUT)
+    GPIO.setFunction(LEFTMOTORNEG, GPIO.OUT)
+    GPIO.setFunction(RIGHTMOTORPOS, GPIO.OUT)
+    GPIO.setFunction(RIGHTMOTORNEG, GPIO.OUT)
+
 
     # retrieve current datetime
-    now = datetime.datetime.now()
+    #now = datetime.datetime.now()
 
     # test if we are between ON time and tun the light ON
-    if ((now.hour >= HOUR_ON) and (now.hour < HOUR_OFF)):
-        GPIO.digitalWrite(LIGHT, GPIO.HIGH)
+    #if ((now.hour >= HOUR_ON) and (now.hour < HOUR_OFF)):
+    #    GPIO.digitalWrite(LIGHT, GPIO.HIGH)
 
 # loop function is repeatedly called by WebIOPi 
-def loop():
+#def loop():
     # retrieve current datetime
-    now = datetime.datetime.now()
+    #now = datetime.datetime.now()
 
     # toggle light ON all days at the correct time
-    if ((now.hour == HOUR_ON) and (now.minute == 0) and (now.second == 0)):
-        if (GPIO.digitalRead(LIGHT) == GPIO.LOW):
-            GPIO.digitalWrite(LIGHT, GPIO.HIGH)
+    #if ((now.hour == HOUR_ON) and (now.minute == 0) and (now.second == 0)):
+    #    if (GPIO.digitalRead(LIGHT) == GPIO.LOW):
+    #        GPIO.digitalWrite(LIGHT, GPIO.HIGH)
 
     # toggle light OFF
-    if ((now.hour == HOUR_OFF) and (now.minute == 0) and (now.second == 0)):
-        if (GPIO.digitalRead(LIGHT) == GPIO.HIGH):
-            GPIO.digitalWrite(LIGHT, GPIO.LOW)
+    #if ((now.hour == HOUR_OFF) and (now.minute == 0) and (now.second == 0)):
+    #    if (GPIO.digitalRead(LIGHT) == GPIO.HIGH):
+    #        GPIO.digitalWrite(LIGHT, GPIO.LOW)
 
     # gives CPU some time before looping again
-    webiopi.sleep(1)
+    #webiopi.sleep(1)
 
 # destroy function is called at WebIOPi shutdown
 def destroy():
-    GPIO.digitalWrite(LIGHT, GPIO.LOW)
+    #GPIO.digitalWrite(LIGHT, GPIO.LOW)
+    GPIO.digitalWrite(LEFTMOTORPOS, GPO.LOW)
+    GPIO.digitalWrite(LEFTMOTORNEG, GPO.LOW)
+    GPIO.digitalWrite(RIGHTMOTORPOS, GPO.LOW)
+    GPIO.digitalWrite(RIGHTMOTORNEG, GPO.LOW)
+
+
+# motor control
+@webiopi.macro
+def moveForward()
+    GPIO.digitalWrite(LEFTMOTORPOS, GPO.HIGH)
+    GPIO.digitalWrite(LEFTMOTORNEG, GPO.LOW)
+    GPIO.digitalWrite(RIGHTMOTORPOS, GPO.HIGH)
+    GPIO.digitalWrite(RIGHTMOTORNEG, GPO.LOW)
+  
+@webiopi.macro
+def moveBackward()
+    GPIO.digitalWrite(LEFTMOTORPOS, GPO.LOW)
+    GPIO.digitalWrite(LEFTMOTORNEG, GPO.HIGH)
+    GPIO.digitalWrite(RIGHTMOTORPOS, GPO.LOW)
+    GPIO.digitalWrite(RIGHTMOTORNEG, GPO.HIGH)
+
+@webiopi.macro
+def turnLeft()
+    GPIO.digitalWrite(LEFTMOTORPOS, GPO.HIGH)
+    GPIO.digitalWrite(LEFTMOTORNEG, GPO.LOW)
+    GPIO.digitalWrite(RIGHTMOTORPOS, GPO.LOW)
+    GPIO.digitalWrite(RIGHTMOTORNEG, GPO.HIGH)
+
+@webiopi.macro
+def turnRight()
+    GPIO.digitalWrite(LEFTMOTORPOS, GPO.LOW)
+    GPIO.digitalWrite(LEFTMOTORNEG, GPO.HIGH)
+    GPIO.digitalWrite(RIGHTMOTORPOS, GPO.HIGH)
+    GPIO.digitalWrite(RIGHTMOTORNEG, GPO.LOW)
+
+@webiopi.macro
+def motorStop()
+    GPIO.digitalWrite(LEFTMOTORPOS, GPO.HIGH)
+    GPIO.digitalWrite(LEFTMOTORNEG, GPO.HIGH)
+    GPIO.digitalWrite(RIGHTMOTORPOS, GPO.HIGH)
+    GPIO.digitalWrite(RIGHTMOTORNEG, GPO.HIGH)
+
+@webiopi.macro
+def motorShutdown()
+    GPIO.digitalWrite(LEFTMOTORPOS, GPO.LOW)
+    GPIO.digitalWrite(LEFTMOTORNEG, GPO.LOW)
+    GPIO.digitalWrite(RIGHTMOTORPOS, GPO.LOW)
+    GPIO.digitalWrite(RIGHTMOTORNEG, GPO.LOW)
+
 
 # play sound
 @webiopi.macro
