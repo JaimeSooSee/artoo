@@ -46,42 +46,42 @@
 	  {
 			var statusdiv = document.getElementById('statusdiv');
 			statusdiv.innerHTML = 'Move Forward';
-			webiopi().callMacro(moveForward, []);
+			webiopi().callMacro("moveForward", []);
 	  }
 
 	  function moveBackward()
 		{
 			var statusdiv = document.getElementById('statusdiv');
 			statusdiv.innerHTML = 'Move Backward';
-			webiopi().callMacro(moveBackward, []);
+			webiopi().callMacro("moveBackward", []);
 		}        
 
 	  function turnLeft()
 	  {
 			var statusdiv = document.getElementById('statusdiv');
 			statusdiv.innerHTML = 'Turn Left';
-			webiopi().callMacro(turnLeft, []);
+			webiopi().callMacro("turnLeft", []);
 	  }
 	        
 	  function turnRight()
 	  {
 			var statusdiv = document.getElementById('statusdiv');
 			statusdiv.innerHTML = 'Turn Right';
-			webiopi().callMacro(turnRight, []);
+			webiopi().callMacro("turnRight", []);
 	  }        
 	        
 	  function stop()
 	  {
 			var statusdiv = document.getElementById('statusdiv');
 	   	statusdiv.innerHTML = 'Stop';
-			webiopi().callMacro(motorStop, []);
+			webiopi().callMacro("motorStop", []);
 		}
 
 	  function shutdown()
 	  {
 			var statusdiv = document.getElementById('statusdiv');
 	   	statusdiv.innerHTML = 'Status: Powered Down';
-			webiopi().callMacro(shutdown, []);
+			webiopi().callMacro("shutdown", []);
 			$("#nav").hide();
 		}
 
