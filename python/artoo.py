@@ -60,54 +60,54 @@ def setup():
 # destroy function is called at WebIOPi shutdown
 def destroy():
     #GPIO.digitalWrite(LIGHT, GPIO.LOW)
-    GPIO.digitalWrite(LEFTMOTORPOS, GPO.LOW)
-    GPIO.digitalWrite(LEFTMOTORNEG, GPO.LOW)
-    GPIO.digitalWrite(RIGHTMOTORPOS, GPO.LOW)
-    GPIO.digitalWrite(RIGHTMOTORNEG, GPO.LOW)
+    GPIO.digitalWrite(LEFTMOTORPOS, GPIO.LOW)
+    GPIO.digitalWrite(LEFTMOTORNEG, GPIO.LOW)
+    GPIO.digitalWrite(RIGHTMOTORPOS, GPIO.LOW)
+    GPIO.digitalWrite(RIGHTMOTORNEG, GPIO.LOW)
 
 
 # motor control
 @webiopi.macro
 def moveForward():
-    GPIO.digitalWrite(LEFTMOTORPOS, GPO.HIGH)
-    GPIO.digitalWrite(LEFTMOTORNEG, GPO.LOW)
-    GPIO.digitalWrite(RIGHTMOTORPOS, GPO.HIGH)
-    GPIO.digitalWrite(RIGHTMOTORNEG, GPO.LOW)
+    GPIO.digitalWrite(LEFTMOTORPOS, GPIO.HIGH)
+    GPIO.digitalWrite(LEFTMOTORNEG, GPIO.LOW)
+    GPIO.digitalWrite(RIGHTMOTORPOS, GPIO.HIGH)
+    GPIO.digitalWrite(RIGHTMOTORNEG, GPIO.LOW)
   
 @webiopi.macro
 def moveBackward():
-    GPIO.digitalWrite(LEFTMOTORPOS, GPO.LOW)
-    GPIO.digitalWrite(LEFTMOTORNEG, GPO.HIGH)
-    GPIO.digitalWrite(RIGHTMOTORPOS, GPO.LOW)
-    GPIO.digitalWrite(RIGHTMOTORNEG, GPO.HIGH)
+    GPIO.digitalWrite(LEFTMOTORPOS, GPIO.LOW)
+    GPIO.digitalWrite(LEFTMOTORNEG, GPIO.HIGH)
+    GPIO.digitalWrite(RIGHTMOTORPOS, GPIO.LOW)
+    GPIO.digitalWrite(RIGHTMOTORNEG, GPIO.HIGH)
 
 @webiopi.macro
 def turnLeft():
-    GPIO.digitalWrite(LEFTMOTORPOS, GPO.HIGH)
-    GPIO.digitalWrite(LEFTMOTORNEG, GPO.LOW)
-    GPIO.digitalWrite(RIGHTMOTORPOS, GPO.LOW)
-    GPIO.digitalWrite(RIGHTMOTORNEG, GPO.HIGH)
+    GPIO.digitalWrite(LEFTMOTORPOS, GPIO.HIGH)
+    GPIO.digitalWrite(LEFTMOTORNEG, GPIO.LOW)
+    GPIO.digitalWrite(RIGHTMOTORPOS, GPIO.LOW)
+    GPIO.digitalWrite(RIGHTMOTORNEG, GPIO.HIGH)
 
 @webiopi.macro
 def turnRight():
-    GPIO.digitalWrite(LEFTMOTORPOS, GPO.LOW)
-    GPIO.digitalWrite(LEFTMOTORNEG, GPO.HIGH)
-    GPIO.digitalWrite(RIGHTMOTORPOS, GPO.HIGH)
-    GPIO.digitalWrite(RIGHTMOTORNEG, GPO.LOW)
+    GPIO.digitalWrite(LEFTMOTORPOS, GPIO.LOW)
+    GPIO.digitalWrite(LEFTMOTORNEG, GPIO.HIGH)
+    GPIO.digitalWrite(RIGHTMOTORPOS, GPIO.HIGH)
+    GPIO.digitalWrite(RIGHTMOTORNEG, GPIO.LOW)
 
 @webiopi.macro
 def motorStop():
-    GPIO.digitalWrite(LEFTMOTORPOS, GPO.HIGH)
-    GPIO.digitalWrite(LEFTMOTORNEG, GPO.HIGH)
-    GPIO.digitalWrite(RIGHTMOTORPOS, GPO.HIGH)
-    GPIO.digitalWrite(RIGHTMOTORNEG, GPO.HIGH)
+    GPIO.digitalWrite(LEFTMOTORPOS, GPIO.HIGH)
+    GPIO.digitalWrite(LEFTMOTORNEG, GPIO.HIGH)
+    GPIO.digitalWrite(RIGHTMOTORPOS, GPIO.HIGH)
+    GPIO.digitalWrite(RIGHTMOTORNEG, GPIO.HIGH)
 
 @webiopi.macro
 def motorShutdown():
-    GPIO.digitalWrite(LEFTMOTORPOS, GPO.LOW)
-    GPIO.digitalWrite(LEFTMOTORNEG, GPO.LOW)
-    GPIO.digitalWrite(RIGHTMOTORPOS, GPO.LOW)
-    GPIO.digitalWrite(RIGHTMOTORNEG, GPO.LOW)
+    GPIO.digitalWrite(LEFTMOTORPOS, GPIO.LOW)
+    GPIO.digitalWrite(LEFTMOTORNEG, GPIO.LOW)
+    GPIO.digitalWrite(RIGHTMOTORPOS, GPIO.LOW)
+    GPIO.digitalWrite(RIGHTMOTORNEG, GPIO.LOW)
 
 
 # play sound
