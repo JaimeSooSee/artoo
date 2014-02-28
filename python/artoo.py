@@ -4,9 +4,8 @@ import subprocess
 import os
 from threading import Thread
 
+# init WebIOPi
 GPIO = webiopi.GPIO
-
-#LIGHT = 17 # GPIO pin using BCM numbering
 
 # Pins for the motors
 LEFTMOTORPOS = 2 # GPIO pin for left leg positive
@@ -14,57 +13,33 @@ LEFTMOTORNEG = 3 # GPIO pin for left leg negative
 RIGHTMOTORPOS = 4 # GPIO pin for left leg positive
 RIGHTMOTORNEG = 17 # GPIO pin for left leg negative
 
-
-#HOUR_ON = 8   # Turn Light ON at 08:00
-#HOUR_OFF = 18 # Turn Light OFF at 18:00
-
 MEDIA_PATH = "/usr/share/webiopi/htdocs/artoo/sounds"
 
-# setup function is automatically called at WebIOPi startup
+# initialize all the pins to low output
 def setup():
-    # set the GPIO used by the light to output
-    #GPIO.setFunction(LIGHT, GPIO.OUT)
-
     # set the GPIO used by the motors to output
     GPIO.setFunction(LEFTMOTORPOS, GPIO.OUT)
     GPIO.setFunction(LEFTMOTORNEG, GPIO.OUT)
     GPIO.setFunction(RIGHTMOTORPOS, GPIO.OUT)
     GPIO.setFunction(RIGHTMOTORNEG, GPIO.OUT)
 
+    # set all pins to high (motor stop)
+    GPIO.digitalWrite(LEFTMOTORPOS, GPIO.HIGH)
+    GPIO.digitalWrite(LEFTMOTORNEG, GPIO.HIGH)
+    GPIO.digitalWrite(RIGHTMOTORPOS, GPIO.HIGH)
+    GPIO.digitalWrite(RIGHTMOTORNEG, GPIO.HIGH)
 
-    # retrieve current datetime
-    #now = datetime.datetime.now()
 
-    # test if we are between ON time and tun the light ON
-    #if ((now.hour >= HOUR_ON) and (now.hour < HOUR_OFF)):
-    #    GPIO.digitalWrite(LIGHT, GPIO.HIGH)
-
-# loop function is repeatedly called by WebIOPi 
-#def loop():
-    # retrieve current datetime
-    #now = datetime.datetime.now()
-
-    # toggle light ON all days at the correct time
-    #if ((now.hour == HOUR_ON) and (now.minute == 0) and (now.second == 0)):
-    #    if (GPIO.digitalRead(LIGHT) == GPIO.LOW):
-    #        GPIO.digitalWrite(LIGHT, GPIO.HIGH)
-
-    # toggle light OFF
-    #if ((now.hour == HOUR_OFF) and (now.minute == 0) and (now.second == 0)):
-    #    if (GPIO.digitalRead(LIGHT) == GPIO.HIGH):
-    #        GPIO.digitalWrite(LIGHT, GPIO.LOW)
-
-    # gives CPU some time before looping again
-    #webiopi.sleep(1)
-
-# destroy function is called at WebIOPi shutdown
+# shutdown method set all pins to low
 def destroy():
-    #GPIO.digitalWrite(LIGHT, GPIO.LOW)
+    # set all pins to low
     GPIO.digitalWrite(LEFTMOTORPOS, GPIO.LOW)
     GPIO.digitalWrite(LEFTMOTORNEG, GPIO.LOW)
     GPIO.digitalWrite(RIGHTMOTORPOS, GPIO.LOW)
     GPIO.digitalWrite(RIGHTMOTORNEG, GPIO.LOW)
 
+
+# Begin -- JB -- the code below for the motor conrrol could be a bit cleaner and more extensible but I was going for low latency. I have some ideas about refactoring this to make it cleaner, but not sure about the performance impact at this point.
 
 # motor control
 @webiopi.macro
@@ -108,6 +83,8 @@ def motorShutdown():
     GPIO.digitalWrite(LEFTMOTORNEG, GPIO.LOW)
     GPIO.digitalWrite(RIGHTMOTORPOS, GPIO.LOW)
     GPIO.digitalWrite(RIGHTMOTORNEG, GPIO.LOW)
+
+# End -- JB
 
 
 # play sound
