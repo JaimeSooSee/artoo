@@ -154,6 +154,17 @@ form > label.ui-input-text, label.ui-slider { font-weight: 700; }
 	.product-tile { width: 33%; }
 }
 
+.body
+{
+	overflow: hidden;
+}
+
+.ui-bar-a
+{
+  border: 1px solid #aaa;
+  width: 99%;
+}
+
 .mainarea
 {
   position:absolute;
@@ -161,8 +172,8 @@ form > label.ui-input-text, label.ui-slider { font-weight: 700; }
   top:0px;
   z-index:1;
   width: 100%;
-  height: 100%;
+  height: 110%;
   padding: 0px;
   margin: 0px;
-  background: white;
+  background: black;
 }
