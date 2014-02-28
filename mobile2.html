@@ -46,63 +46,56 @@
 		}
 
 		function moveForward()
-	        {
-			var statusdiv = document.getElementById('statusdiv');
-			statusdiv.innerHTML = 'Move Forward';
+    {
 			r2d2().moveForward();
-	        }
+      $("#statusImage").style.visibility = 'visibile';
+      $("#statusImage").src = 'images/up.png';
+    }
 
-	        function moveBackward()
+    function moveBackward()
 		{
-			var statusdiv = document.getElementById('statusdiv');
-			statusdiv.innerHTML = 'Move Backward';
 			r2d2().moveBackward();
+      $("#statusImage").style.visibility = 'visibile';
+      $("#statusImage").src = 'images/down.png';
 		}        
 
-	        function turnLeft()
-	        {
-			var statusdiv = document.getElementById('statusdiv');
-			statusdiv.innerHTML = 'Turn Left';
+    function turnLeft()
+    {
 			r2d2().turnLeft();
-	        }
+      $("#statusImage").style.visibility = 'visibile';
+      $("#statusImage").src = 'images/left.png';
+    }
 
-	        function turnRight()
-	        {
-			var statusdiv = document.getElementById('statusdiv');
-			statusdiv.innerHTML = 'Turn Right';
+    function turnRight()
+    {
 			r2d2().turnRight();
-	        }        
+      $("#statusImage").style.visibility = 'visibile';
+      $("#statusImage").src = 'images/right.png';
+    }        
 
-	        function stop()
-	        {
-			var statusdiv = document.getElementById('statusdiv');
-	          	statusdiv.innerHTML = 'Stop';
+    function stop()
+    {            
 			r2d2().stop();
+      $("#statusImage").style.visibility = 'hidden';
 		}
 
-	        function shutdown()
-	        {
-			var statusdiv = document.getElementById('statusdiv');
-	          	statusdiv.innerHTML = 'Status: Powered Down';
+    function shutdown()
+    {
 			r2d2().shutdown();
-			$("#nav").hide();
 		}
 
 		function playSound(filename)
 		{
 			webiopi().callMacro("playSound", [filename, "mp3"])
-			$("#nav").hide();
 		}
 
 		function killSounds()
 		{
 			webiopi().callMacro("killSounds", [])
-			$("#nav").hide();
 		}
 
 		window.addEventListener('load', function () {
 		    var box1 = document.getElementById('box1');
-		    var statusdiv = document.getElementById('statusdiv');
 		    var startx = 0;
 		    var starty = 0;
 		    var dist = 0;
@@ -187,9 +180,7 @@
 		        document.body.addEventListener('mouseup', function (e) {
 		            var touchobj = e;
 		            ismousedown = false;
-		            statusdiv.innerHTML = 'Status: touchend<br /> Resting x coordinate: ' + touchobj.clientX + 'px';
-		            statusdiv.innerHTML = 'Status: Stop';
-				stop();
+        				stop();
 
 		            moving = false;
 		            e.preventDefault();
@@ -222,12 +213,17 @@
 			<div class="ui-block-a" style="width: 50px; height: 40px; text-align: center; border-right: 1px solid #aaa">
 				<a href="#main-nav-menu" title="Menu"><img src="images/3lines.gif" width="30" height="30" onClick="$.mobile.silentScroll(0)" /></a>
 			</div>
+      <div class="ui-block-b" style="width: 130px; padding-left: 15px; padding-top: 10px; text-align: left;">
+        TEAM AYCE
+      </div>
+      <div class="ui-block-c" style="float: right">
+				<img id="statusImage" src="" style="visibility: hidden" width="24" height="24" alt="" />
+			</div>
+      
 		</div>
 	 </div>
 
   <div id="box1" class="mainarea">
-	<div id="statusdiv"></div>
-  </div>
 
 </body>
 </html>
