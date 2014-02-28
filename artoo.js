@@ -6,52 +6,42 @@ function r2d2()
 {
 	if (_artoo == undefined)
 	{
-		var motor1 = new Motor(2,3);
-		var motor2 = new Motor(4,17);
-		_artoo = new R2D2(motor1, motor2);
+		_artoo = new R2D2();
 	}
 	return _artoo;
 }
 
-function R2D2(motor1, motor2)
+function R2D2()
 {
-	this.motor1 = motor1;
-	this.motor2 = motor2;
 }
 
 R2D2.prototype.moveForward = function()
 {
-	this.motor1.forward();
-	this.motor2.forward();
+	webiopi().callMacro("moveForward", []);
 }
 
 R2D2.prototype.moveBackward = function()
 {
-	this.motor1.backward();
-	this.motor2.backward();
+	webiopi().callMacro("moveBackward", []);
 }
 
 R2D2.prototype.turnLeft = function()
 {
-	this.motor1.backward();
-	this.motor2.forward();
+	webiopi().callMacro("turnLeft", []);
 }
 
 R2D2.prototype.turnRight = function()
 {
-	this.motor1.forward();
-	this.motor2.backward();
+	webiopi().callMacro("turnRight", []);
 }
 
 R2D2.prototype.stop = function()
 {
-	this.motor1.stop();
-	this.motor2.stop();
+	webiopi().callMacro("motorStop", []);
 }
 
 R2D2.prototype.shutdown = function()
 {
-	this.motor1.shutdown();
-	this.motor2.shutdown();
+	webiopi().callMacro("shutdown", []);
 }
 
