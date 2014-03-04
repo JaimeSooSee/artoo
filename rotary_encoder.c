@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 
 #include <pigpio.h>
 
@@ -27,7 +27,6 @@ int main(int argc, char * argv[])
 
     gpioSetMode(ENCODER_A, PI_INPUT);
     gpioSetMode(ENCODER_B, PI_INPUT);
-
     /* pull up is needed as encoder common is grounded */
 
     gpioSetPullUpDown(ENCODER_A, PI_PUD_UP);
